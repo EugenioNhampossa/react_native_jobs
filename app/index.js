@@ -1,10 +1,44 @@
-import { View,Text } from "react-native";
+import { View, Text } from "react-native";
+import { SafeAreaView } from "react-native";
+import { Stack, useRouter } from "expo-router";
+import { useState } from "react";
+
+import { COLORS, images, SIZES, icons } from "../constants";
+import {
+  Popularjobs,
+  ScreenHeaderBtn,
+  Welcome,
+  Nearbyjobs,
+} from "../components";
+import { ScrollView } from "react-native-gesture-handler";
 
 const Home = () => {
   return (
-    <View>
-      <Text>Home</Text>
-    </View>
+    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
+      <Stack.Screen
+        options={{
+          headerStyle: {
+            backgroundColor: COLORS.lightWhite,
+          },
+          headerShadowVisible: false,
+          headerLeft: () => (
+            <ScreenHeaderBtn iconUrl={icons.menu} dimension={"60%"} />
+          ),
+
+          headerRight: () => (
+            <ScreenHeaderBtn iconUrl={images.profile} dimension={"100%"} />
+          ),
+          headerTitle: "",
+        }}
+      />
+      <ScrollView showsHorizontalScrollIndicator={false}>
+        <View style={{ flex: 1, padding: SIZES.medium }}>
+          <Welcome />
+          <Popularjobs />
+          <Nearbyjobs />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
